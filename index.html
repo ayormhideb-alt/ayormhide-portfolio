@@ -1,1 +1,843 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b12">
+
+  <meta name="description" content="Ayormhide Dev builds responsive websites, business websites, landing pages and modern web experiences.">
+
+  <title>Ayormhide Dev | Web Developer</title>
+
+  <style>
+    :root {
+      --bg: #0b0b12;
+      --surface: #13131f;
+      --surface-light: #1a1a29;
+      --text: #f5f3ff;
+      --muted: #aaa8bd;
+      --accent: #a78bfa;
+      --accent-strong: #8b5cf6;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 11, 18, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      min-height: 650px;
+      padding: 105px 0 95px;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(
+          ellipse at 80% 15%,
+          rgba(139, 92, 246, 0.17),
+          transparent 45%
+        );
+    }
+
+    .hero-content {
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      background: rgba(167, 139, 250, 0.08);
+      color: #d6c7ff;
+      border-radius: 100px;
+      font-size: 12px;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+    }
+
+    h1 {
+      font-size: clamp(39px, 7vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -2.8px;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #c4b5fd, #a78bfa, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-bottom: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      color: #100a20;
+      background: var(--accent);
+    }
+
+    .btn.primary:hover {
+      background: #c4b5fd;
+    }
+
+    .btn.secondary {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn.secondary:hover {
+      background: var(--surface-light);
+    }
+
+    .skills-line {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .skills-line strong {
+      color: #ded5ff;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 38px;
+    }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(29px, 5vw, 43px);
+      line-height: 1.2;
+      letter-spacing: -1.2px;
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+    }
+
+    .about-card h3 {
+      font-size: 17px;
+      margin-bottom: 17px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      background: rgba(167, 139, 250, 0.08);
+      color: #d6c7ff;
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 12px;
+    }
+
+    .projects-section {
+      background: rgba(255, 255, 255, 0.018);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(167, 139, 250, 0.5);
+    }
+
+    .project-preview {
+      min-height: 175px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(167, 139, 250, 0.2),
+          transparent 65%
+        ),
+        #171522;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-icon {
+      font-size: 39px;
+      margin-bottom: 9px;
+    }
+
+    .preview-title {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .preview-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .project-content {
+      padding: 23px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #d6c7ff;
+      background: rgba(167, 139, 250, 0.1);
+      margin-bottom: 12px;
+    }
+
+    .project-content h3 {
+      font-size: 20px;
+      margin-bottom: 9px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 19px;
+      flex: 1;
+    }
+
+    .project-link {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .project-link:hover {
+      color: #c4b5fd;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .service-icon {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(167, 139, 250, 0.1);
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-box {
+      padding: 45px;
+      border-radius: 20px;
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      background:
+        radial-gradient(
+          ellipse at top right,
+          rgba(139, 92, 246, 0.17),
+          transparent 60%
+        ),
+        var(--surface);
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      max-width: 650px;
+      margin: 0 auto 17px;
+    }
+
+    .contact-box p {
+      max-width: 570px;
+      color: var(--muted);
+      margin: 0 auto 26px;
+    }
+
+    .contact-box .button-row {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-brand {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        min-height: 70px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 13px 0;
+        gap: 10px;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+        font-size: 12px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 85px 0 75px;
+      }
+
+      h1 {
+        letter-spacing: -1.7px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .about-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 30px 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .button-row .btn {
+        width: 100%;
+      }
+
+      .nav-links {
+        gap: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">
+        AYORMHIDE<span>.</span>DEV
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            Web Developer · Open to Projects
+          </div>
+
+          <h1>
+            I build websites that help
+            <span class="gradient-text">businesses grow online.</span>
+          </h1>
+
+          <p class="hero-description">
+            I'm Ayormhide, a web developer skilled in HTML, CSS,
+            JavaScript and React. I build modern, responsive websites
+            that help businesses showcase their services, reach customers
+            and create a stronger online presence.
+          </p>
+
+          <div class="button-row">
+            <a class="btn primary" href="#projects">
+              Explore My Work ↗
+            </a>
+
+            <a class="btn secondary"
+               href="https://wa.me/2348140598459?text=Hello%2C%20I%20found%20your%20portfolio%20and%20I%27m%20interested%20in%20your%20services."
+               target="_blank"
+               rel="noopener">
+              Hire Me on WhatsApp ↗
+            </a>
+          </div>
+
+          <p class="skills-line">
+            <strong>My tools:</strong>
+            HTML · CSS · JavaScript · React · Responsive Design
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="section-label">About Me</p>
+          <h2>Turning ideas into websites.</h2>
+          <p class="section-description">
+            I focus on building useful, modern and user-friendly
+            web experiences.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              I'm a web developer who enjoys turning ideas into
+              functional websites. I work with modern web technologies
+              to create experiences that look good on mobile phones
+              and desktop computers.
+            </p>
+
+            <p>
+              Whether you need a business website, a landing page,
+              a product showcase or a redesign, I can help you build
+              an online presence that fits your goals.
+            </p>
+
+            <p>
+              I'm always learning, improving my skills and working
+              on projects that help me become a better developer.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Technologies I Work With</h3>
+
+            <div class="skill-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Vite</span>
+              <span class="tag">Responsive Design</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Netlify</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="section-label">Selected Work</p>
+          <h2>Projects I've worked on.</h2>
+          <p class="section-description">
+            A selection of my web development projects. Some are live,
+            while others are project showcases or works in progress.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <article class="project-card">
+            <div class="project-preview">
+              <div class="preview-icon">📱</div>
+              <div class="preview-title">Swift Phones NG</div>
+              <div class="preview-subtitle">
+                Modern phone store website
+              </div>
+            </div>
+
+            <div class="project-content">
+              <span class="project-status">Live Website</span>
+
+              <h3>Swift Phones NG</h3>
+
+              <p>
+                A phone store website designed to showcase products
+                through a clean, modern and responsive interface.
+              </p>
+
+              <div class="skill-tags" style="margin-bottom: 18px;">
+                <span class="tag">React</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Vite</span>
+              </div>
+
+              <a class="project-link"
+                 href="https://swiftphones.netlify.app/"
+                 target="_blank"
+                 rel="noopener">
+                Visit Live Website ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview">
+              <div class="preview-icon">🏡</div>
+              <div class="preview-title">Swift Estates</div>
+              <div class="preview-subtitle">
+                Real estate website project
+              </div>
+            </div>
+
+            <div class="project-content">
+              <span class="project-status">Portfolio Project</span>
+
+              <h3>Swift Estates</h3>
+
+              <p>
+                A real estate website concept designed to present
+                property listings and make it easier for visitors
+                to explore available properties.
+              </p>
+
+              <div class="skill-tags" style="margin-bottom: 18px;">
+                <span class="tag">React</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Responsive UI</span>
+              </div>
+
+              <a class="project-link" href="#contact">
+                Ask About This Project ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview">
+              <div class="preview-icon">🍽️</div>
+              <div class="preview-title">Faf Catering Services</div>
+              <div class="preview-subtitle">
+                Catering business website concept
+              </div>
+            </div>
+
+            <div class="project-content">
+              <span class="project-status">Design Project</span>
+
+              <h3>Faf Catering Services</h3>
+
+              <p>
+                A catering website concept focused on presenting
+                food services, communicating a brand and helping
+                potential customers make enquiries.
+              </p>
+
+              <div class="skill-tags" style="margin-bottom: 18px;">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Web Design</span>
+              </div>
+
+              <a class="project-link" href="#contact">
+                Ask About This Project ↗
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview">
+              <div class="preview-icon">🚀</div>
+              <div class="preview-title">DGG Affiliate Hub</div>
+              <div class="preview-subtitle">
+                Affiliate platform project
+              </div>
+            </div>
+
+            <div class="project-content">
+              <span class="project-status">In Progress</span>
+
+              <h3>DGG Affiliate Hub</h3>
+
+              <p>
+                An affiliate platform project designed around
+                user dashboards, referrals, learning resources
+                and business services.
+              </p>
+
+              <div class="skill-tags" style="margin-bottom: 18px;">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MySQL</span>
+              </div>
+
+              <a class="project-link" href="#contact">
+                Discuss a Similar Project ↗
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="section-label">What I Do</p>
+          <h2>How I can help your business.</h2>
+          <p class="section-description">
+            Practical website solutions for businesses, entrepreneurs
+            and individuals who want to grow online.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Business Websites</h3>
+            <p>
+              Professional websites that explain your services,
+              introduce your brand and help customers contact you.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">🎯</div>
+            <h3>Landing Pages</h3>
+            <p>
+              Focused web pages for promoting a product, service,
+              campaign or special offer.
+            </p>
+          </article>
+
+          <article class="service-car
